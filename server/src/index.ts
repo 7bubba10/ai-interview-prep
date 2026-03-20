@@ -1,7 +1,6 @@
 import express, { Request, Response } from 'express';
 import pool from './db';
 import cors from 'cors';
-import { error } from 'node:console';
 const app = express();
 const PORT : number = 8000;
 
