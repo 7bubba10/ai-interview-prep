@@ -1,13 +1,27 @@
 import express, { Request, Response } from 'express';
+import pool from './db';
 import cors from 'cors';
+import { error } from 'node:console';
 const app = express();
 const PORT : number = 8000;
+
 
 app.use(express.json());
 app.use(cors());
 
+// Index
 app.get('/',(req:Request,res:Response) =>{
     res.json({message: 'API is running'});
+})
+
+// Temporary Test Connection
+pool.query('SELECT NOW()',(err,res) =>{
+    if (err) {
+        console.error('Database connection failed:', err);
+    } else {
+        console.log('Databse connection successful', res.rows[0]);
+    }
+
 })
 
 
