@@ -6,11 +6,13 @@ import jwt  from "jsonwebtoken";
 export const register = async(req:Request,res:Response) =>  {
     const { email, password } = req.body as {email:string; password:string};
 
+    // 10 salt rounds — good balance of security and performance
     const hash_password = await bcrypt.hash(password, 10);
 
-    const result = await pool.query('insert into users (email, hash_password) values ($1,$2) returning id',
+    const result = await pool.query('insert into users (email, password_hash) values ($1,$2) returning id',
         [email,hash_password]);
 
+    // Sign token with user ID as payload; expires in 7 days
     const token = jwt.sign({id: result.rows[0].id}, process.env.JWT_SECRET as string, {expiresIn: '7d'});
 
     res.status(201).json({token, userID: result.rows[0].id});
@@ -24,11 +26,12 @@ export const login = async(req:Request,res:Response) =>  {
 
     const result = await pool.query('select * from users where email = ($1)', [email]);
 
+    // Use generic "Invalid credentials" to avoid leaking whether the email exists
     if (result.rows.length === 0) res.status(401).json({ message: 'Invalid credentials' });
 
     const user = result.rows[0];
 
-    const compare_pass = await bcrypt.compare(password,user.hash_password);
+    const compare_pass = await bcrypt.compare(password,user.password_hash);
 
     if (!compare_pass){
         res.status(401).json({ message: 'Invalid credentials' });
