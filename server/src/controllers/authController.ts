@@ -1,28 +1,35 @@
 import { Request, Response } from "express";
 import bcrypt, { hash } from 'bcrypt';
 import pool from "../db";
-import jwt  from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
-export const register = async(req:Request,res:Response) =>  {
-    const { email, password } = req.body as {email:string; password:string};
+export const register = async (req: Request, res: Response) => {
+    try {
+        const { email, password } = req.body as { email: string; password: string };
 
-    // 10 salt rounds — good balance of security and performance
-    const hash_password = await bcrypt.hash(password, 10);
+        // 10 salt rounds — good balance of security and performance
+        const hash_password = await bcrypt.hash(password, 10);
 
-    const result = await pool.query('insert into users (email, password_hash) values ($1,$2) returning id',
-        [email,hash_password]);
+        const result = await pool.query('insert into users (email, password_hash) values ($1,$2) returning id',
+            [email, hash_password]);
 
-    // Sign token with user ID as payload; expires in 7 days
-    const token = jwt.sign({id: result.rows[0].id}, process.env.JWT_SECRET as string, {expiresIn: '7d'});
+        // Sign token with user ID as payload; expires in 7 days
+        const token = jwt.sign({ id: result.rows[0].id }, process.env.JWT_SECRET as string, { expiresIn: '7d' });
 
-    res.status(201).json({token, userID: result.rows[0].id});
+        res.status(201).json({ token, userID: result.rows[0].id });
+    } 
+    catch (error) {
+        res.status(500).json({message: 'Something went wrong'});
+
+    }
+    
 
 
 
 }
 
-export const login = async(req:Request,res:Response) =>  {
-    const { email, password } = req.body as {email:string; password:string};
+export const login = async (req: Request, res: Response) => {
+    const { email, password } = req.body as { email: string; password: string };
 
     const result = await pool.query('select * from users where email = ($1)', [email]);
 
@@ -31,13 +38,13 @@ export const login = async(req:Request,res:Response) =>  {
 
     const user = result.rows[0];
 
-    const compare_pass = await bcrypt.compare(password,user.password_hash);
+    const compare_pass = await bcrypt.compare(password, user.password_hash);
 
-    if (!compare_pass){
+    if (!compare_pass) {
         res.status(401).json({ message: 'Invalid credentials' });
     } else {
-        const token = jwt.sign({id: user.id}, process.env.JWT_SECRET as string, {expiresIn: '7d'});
-        res.status(200).json({token, userID: result.rows[0].id});
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, { expiresIn: '7d' });
+        res.status(200).json({ token, userID: result.rows[0].id });
     }
 
 
