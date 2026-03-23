@@ -8,10 +8,13 @@ const DashboardPage = () => {
     const [daysUntilInterview, setDaysUntilInterview] = useState(0);
     const [questionCount, setQuestionCount] = useState(0);
     const [loading, setLoading] = useState(false);
-    const { token } = useAuth();
+    const { token, logout } = useAuth();
     const navigate = useNavigate();
 
-
+    const handleLogout = () => {
+        logout();
+        navigate('/login');
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -30,8 +33,6 @@ const DashboardPage = () => {
             })
         };
 
-
-
         const response = await fetch('http://localhost:8000/api/interview/generate', requestOptions);
         const data = await response.json();
 
@@ -41,12 +42,8 @@ const DashboardPage = () => {
             return;
         }
 
-        // Pass generated questions to results page via router state
         navigate('/results', { state: { questions: data } });
-
-
     };
-
 
     return (
         <div style={{
@@ -56,8 +53,17 @@ const DashboardPage = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '2rem'
+            padding: '2rem',
+            position: 'relative'
         }}>
+            <div style={{ position: 'absolute', top: '1rem', right: '1rem' }}>
+                <button
+                    onClick={handleLogout}
+                    style={{ padding: '0.5rem 1rem', borderRadius: '8px', border: '1px solid #6366f1', backgroundColor: 'transparent', color: '#6366f1', cursor: 'pointer' }}
+                >
+                    Logout
+                </button>
+            </div>
             <div style={{
                 backgroundColor: '#1e293b',
                 padding: '2rem',
@@ -100,8 +106,6 @@ const DashboardPage = () => {
             </div>
         </div>
     );
-
 };
 
 export default DashboardPage;
-
