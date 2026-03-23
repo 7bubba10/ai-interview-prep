@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import API_URL from '../config';
 
 
 const LoginPage = () => {
@@ -22,7 +23,7 @@ const LoginPage = () => {
                 password
             })
         };
-        const response = await fetch('http://localhost:8000/api/auth/login', requestOptions);
+        const response = await fetch(`${API_URL}/api/auth/login`, requestOptions);
         const data = await response.json();
 
         // Show error if login failed or no token returned

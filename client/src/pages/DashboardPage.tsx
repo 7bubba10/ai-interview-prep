@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import API_URL from '../config';
 
 
 const DashboardPage = () => {
@@ -33,7 +34,7 @@ const DashboardPage = () => {
             })
         };
 
-        const response = await fetch('http://localhost:8000/api/interview/generate', requestOptions);
+        const response = await fetch(`${API_URL}/api/interview/generate`, requestOptions);
         const data = await response.json();
 
         if (!response.ok || !data) {
