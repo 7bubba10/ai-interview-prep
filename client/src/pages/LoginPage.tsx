@@ -22,9 +22,16 @@ const LoginPage = () => {
                 password
             })
         }
-        //Post Request
         const response = await fetch('http://localhost:8000/api/auth/login', requestOptions);
         const data = await response.json();
+
+        // Show error if login failed or no token returned
+        if (!response.ok || !data.token) {
+            alert(data.message || 'Something went wrong');
+            return;
+        }
+
+        // Store token and redirect to dashboard
         login(data.token);
         navigate('/dashboard');
 
