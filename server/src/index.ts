@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express, { Request, Response } from 'express';
 import authRoutes from './routes/authRoutes';
 import interviewRoutes from './routes/interviewRoutes';
