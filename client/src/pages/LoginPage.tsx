@@ -21,7 +21,7 @@ const LoginPage = () => {
                 email,
                 password
             })
-        }
+        };
         const response = await fetch('http://localhost:8000/api/auth/login', requestOptions);
         const data = await response.json();
 
