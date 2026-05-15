@@ -6,7 +6,7 @@ const HomePage = () => {
     return (
         <div style={{
             minHeight: '100vh',
-            backgroundColor: '#0f172a',
+            backgroundColor: '#0a0f0d',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -16,21 +16,21 @@ const HomePage = () => {
         }}>
             <div style={{ maxWidth: '600px' }}>
                 <h1 style={{ color: 'white', fontSize: '3rem', marginBottom: '1rem', lineHeight: '1.2' }}>
-                    Ace Your Next <span style={{ color: '#6366f1' }}>Tech Interview</span>
+                    Ace Your Next <span style={{ color: '#10b981' }}>Tech Interview</span>
                 </h1>
-                <p style={{ color: '#94a3b8', fontSize: '1.2rem', marginBottom: '2.5rem', lineHeight: '1.6' }}>
+                <p style={{ color: '#6ee7b7', fontSize: '1.2rem', marginBottom: '2.5rem', lineHeight: '1.6' }}>
                     Paste any job description and get personalized interview questions with detailed answers — powered by AI. Walk into your interview prepared and confident.
                 </p>
                 <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
                     <button
                         onClick={() => navigate('/register')}
-                        style={{ padding: '0.875rem 2rem', borderRadius: '8px', border: 'none', backgroundColor: '#6366f1', color: 'white', fontSize: '1rem', cursor: 'pointer', fontWeight: 'bold' }}
+                        style={{ padding: '0.875rem 2rem', borderRadius: '8px', border: 'none', backgroundColor: '#10b981', color: 'white', fontSize: '1rem', cursor: 'pointer', fontWeight: 'bold' }}
                     >
                         Get Started Free
                     </button>
                     <button
                         onClick={() => navigate('/login')}
-                        style={{ padding: '0.875rem 2rem', borderRadius: '8px', border: '2px solid #6366f1', backgroundColor: 'transparent', color: '#6366f1', fontSize: '1rem', cursor: 'pointer', fontWeight: 'bold' }}
+                        style={{ padding: '0.875rem 2rem', borderRadius: '8px', border: '2px solid #10b981', backgroundColor: 'transparent', color: '#10b981', fontSize: '1rem', cursor: 'pointer', fontWeight: 'bold' }}
                     >
                         Login
                     </button>

@@ -45,10 +45,10 @@ const LoginPage = () => {
             alignItems: 'center',
             justifyContent: 'center',
             height: '100vh',
-            backgroundColor: '#0f172a'
+            backgroundColor: '#0a0f0d'
         }}>
             <div style={{
-                backgroundColor: '#1e293b',
+                backgroundColor: '#111c17',
                 padding: '2rem',
                 borderRadius: '12px',
                 width: '100%',
@@ -61,24 +61,24 @@ const LoginPage = () => {
                         placeholder='Email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        style={{ padding: '0.75rem', borderRadius: '8px', border: 'none', backgroundColor: '#334155', color: 'white', fontSize: '1rem' }}
+                        style={{ padding: '0.75rem', borderRadius: '8px', border: 'none', backgroundColor: '#1a2e25', color: 'white', fontSize: '1rem' }}
                     />
                     <input
                         type='password'
                         placeholder='Password'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        style={{ padding: '0.75rem', borderRadius: '8px', border: 'none', backgroundColor: '#334155', color: 'white', fontSize: '1rem' }}
+                        style={{ padding: '0.75rem', borderRadius: '8px', border: 'none', backgroundColor: '#1a2e25', color: 'white', fontSize: '1rem' }}
                     />
                     <button
                         type='submit'
-                        style={{ padding: '0.75rem', borderRadius: '8px', border: 'none', backgroundColor: '#6366f1', color: 'white', fontSize: '1rem', cursor: 'pointer', fontWeight: 'bold' }}
+                        style={{ padding: '0.75rem', borderRadius: '8px', border: 'none', backgroundColor: '#10b981', color: 'white', fontSize: '1rem', cursor: 'pointer', fontWeight: 'bold' }}
                     >
                         Login
                     </button>
                 </form>
-                <p style={{ color: '#94a3b8', textAlign: 'center', marginTop: '1rem' }}>
-                    Don't have an account? <a href='/register' style={{ color: '#6366f1' }}>Register</a>
+                <p style={{ color: '#6ee7b7', textAlign: 'center', marginTop: '1rem' }}>
+                    Don't have an account? <a href='/register' style={{ color: '#10b981' }}>Register</a>
                 </p>
             </div>
         </div>

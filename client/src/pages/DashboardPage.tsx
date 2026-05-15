@@ -49,7 +49,7 @@ const DashboardPage = () => {
     return (
         <div style={{
             minHeight: '100vh',
-            backgroundColor: '#0f172a',
+            backgroundColor: '#0a0f0d',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -60,46 +60,46 @@ const DashboardPage = () => {
             <div style={{ position: 'absolute', top: '1rem', right: '1rem' }}>
                 <button
                     onClick={handleLogout}
-                    style={{ padding: '0.5rem 1rem', borderRadius: '8px', border: '1px solid #6366f1', backgroundColor: 'transparent', color: '#6366f1', cursor: 'pointer' }}
+                    style={{ padding: '0.5rem 1rem', borderRadius: '8px', border: '1px solid #10b981', backgroundColor: 'transparent', color: '#10b981', cursor: 'pointer' }}
                 >
                     Logout
                 </button>
             </div>
             <div style={{
-                backgroundColor: '#1e293b',
+                backgroundColor: '#111c17',
                 padding: '2rem',
                 borderRadius: '12px',
                 width: '100%',
                 maxWidth: '600px'
             }}>
                 <h1 style={{ color: 'white', marginBottom: '0.5rem', textAlign: 'center' }}>AI Interview Prep</h1>
-                <p style={{ color: '#94a3b8', textAlign: 'center', marginBottom: '1.5rem' }}>Paste a job description and get personalized interview questions</p>
+                <p style={{ color: '#6ee7b7', textAlign: 'center', marginBottom: '1.5rem' }}>Paste a job description and get personalized interview questions</p>
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                     <textarea
                         placeholder='Paste the job description here...'
                         value={jobDescription}
                         onChange={(e) => setJobDescription(e.target.value)}
                         rows={6}
-                        style={{ padding: '0.75rem', borderRadius: '8px', border: 'none', backgroundColor: '#334155', color: 'white', fontSize: '1rem', resize: 'vertical' }}
+                        style={{ padding: '0.75rem', borderRadius: '8px', border: 'none', backgroundColor: '#1a2e25', color: 'white', fontSize: '1rem', resize: 'vertical' }}
                     />
                     <input
                         type='number'
                         placeholder='Days until interview'
                         value={daysUntilInterview}
                         onChange={(e) => setDaysUntilInterview(Number(e.target.value))}
-                        style={{ padding: '0.75rem', borderRadius: '8px', border: 'none', backgroundColor: '#334155', color: 'white', fontSize: '1rem' }}
+                        style={{ padding: '0.75rem', borderRadius: '8px', border: 'none', backgroundColor: '#1a2e25', color: 'white', fontSize: '1rem' }}
                     />
                     <input
                         type='number'
                         placeholder='Number of questions'
                         value={questionCount}
                         onChange={(e) => setQuestionCount(Number(e.target.value))}
-                        style={{ padding: '0.75rem', borderRadius: '8px', border: 'none', backgroundColor: '#334155', color: 'white', fontSize: '1rem' }}
+                        style={{ padding: '0.75rem', borderRadius: '8px', border: 'none', backgroundColor: '#1a2e25', color: 'white', fontSize: '1rem' }}
                     />
                     <button
                         type='submit'
                         disabled={loading}
-                        style={{ padding: '0.75rem', borderRadius: '8px', border: 'none', backgroundColor: loading ? '#4f46e5' : '#6366f1', color: 'white', fontSize: '1rem', cursor: loading ? 'not-allowed' : 'pointer', fontWeight: 'bold' }}
+                        style={{ padding: '0.75rem', borderRadius: '8px', border: 'none', backgroundColor: loading ? '#059669' : '#10b981', color: 'white', fontSize: '1rem', cursor: loading ? 'not-allowed' : 'pointer', fontWeight: 'bold' }}
                     >
                         {loading ? 'Generating...' : 'Generate Interview Questions'}
                     </button>
